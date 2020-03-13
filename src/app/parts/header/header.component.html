@@ -1,0 +1,111 @@
+<!-- #header -->
+<header id="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6" [ngClass]="{'animated fadeInDown': !isLoading}" id="app-box">
+        <!-- .entry-header -->
+        <div class="entry-header">
+          <h1 class="title">Web Screenshot</h1>
+          <div class="description">
+            <p>An online tool to captures a beautiful and high-quality screenshot of websites and Twitter tweets.</p>
+          </div>
+        </div><!-- .entry-header -->
+
+        <form [formGroup]="form" (ngSubmit)="formSubmit()">
+          <div class="form-inputs">
+            <div class="form-input">
+              <input type="text" formControlName="url" class="form-control" placeholder="e.g. https://loremipsum.io/" [ngClass]="{'animated shake': submitted && url.invalid && url.errors}" />
+            </div>
+            <div class="form-btn">
+              <button class="btn" type="submit" [disabled]="submitted" title="Demo"><span class="text">Capture</span></button>
+            </div>
+          </div>
+          <div class="form-options">
+            <ul>
+              <li class="full-page">
+                <label>Capture Full Screen</label>
+                <div class="checkbox-group">
+                  <app-radio-input [group]="form" name="full" value="0" label="No"></app-radio-input>
+                  <app-radio-input [group]="form" name="full" value="1" label="Yes"></app-radio-input>
+                </div>
+              </li>
+              <li class="quality">
+                <label>Image Quality</label>
+                <div class="checkbox-group">
+                  <app-radio-input [group]="form" name="quality" value="1" label="Normal"></app-radio-input>
+                  <app-radio-input [group]="form" name="quality" value="2" label="High"></app-radio-input>
+                </div>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <label>Screen Size</label>
+                <div class="select-dropdown">
+                  <select formControlName="screen" class="form-control" (change)="onScreenChange()">
+                    <optgroup *ngFor='let screenGroup of screens' label="{{screenGroup.group}}">
+                      <option *ngFor='let screen of screenGroup.items' [value]="screen.id">{{screen.name}} ({{screen.w}}x{{screen.h}})</option>
+                    </optgroup>
+                    <option value="custom">Custom</option>
+                  </select>
+                </div>
+              </li>
+              <li>
+                <label>Custom Size</label>
+                <div class="custom-size">
+                  <div class="form-input">
+                    <input type="number" formControlName="width" class="form-control" max="2048" step="1" (change)="maxLimitCheck('width')" />
+                  </div>
+                  <div class="form-input">
+                    <input type="number" formControlName="height" class="form-control" max="2048" step="1" (change)="maxLimitCheck('height')" />
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-6" [ngClass]="{'animated fadeInDown': !isLoading}">
+        <!-- #stacks starts-->
+        <ul id="stacks">
+          <li><img src="assets/stacks/stack-1.jpg" alt="Capture Website Screenshot" width="300" height="300"></li>
+          <li><img src="assets/stacks/stack-2.jpg" alt="Capture Website Screenshot" width="300" height="300"></li>
+          <li><img src="assets/stacks/stack-3.jpg" alt="Capture Website Screenshot" width="300" height="300"></li>
+        </ul><!-- #stacks ends-->
+      </div>
+    </div>
+  </div>
+
+  <!-- /#svg-bottom starts-->
+  <svg id="svg-bottom" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 103">
+    <path class="cls-1" d="M1360,16c-80,16-240,48-400,53.3C800,75,640,53,480,42.7,320,32,160,32,80,32H0v71H1440V0Z" />
+  </svg>
+  <!-- /#svg-bottom ends-->
+
+</header><!-- #header -->
+
+<!-- /#loader starts-->
+<div id="loader" *ngIf="isLoading">
+  <!-- /.loader starts-->
+  <div class="loader"></div><!-- /.loader ends-->
+</div><!-- /#loader ends-->
+
+<!-- /#processing starts-->
+<div id="processing" *ngIf="processing">
+  <!-- /.loader starts-->
+  <div class="loader"></div><!-- /.loader ends-->
+</div><!-- /#processing ends-->
+
+<div class="md-modal md-effect" id="modal" data-test="modalHidden">
+  <div class="md-content">
+    <div class="md-body">
+      <div class="md-btns">
+        <button class="md-btn" type="button" (click)="downloadImage()">Download</button>
+        <button class="md-btn alt" type="button" (click)="closeModal()">Close</button>
+      </div>
+      <div id="output">
+        <img id="output-image" src="{{screenshot}}" class="img-responsive" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="md-overlay"></div>
