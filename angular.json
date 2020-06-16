@@ -27,16 +27,9 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/lightgallery.js/dist/css/lightgallery.min.css",
-              "./node_modules/noty/lib/noty.css",
-              "./node_modules/noty/lib/themes/mint.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/masonry-layout/dist/masonry.pkgd.min.js",
-              "./node_modules/lightgallery.js/dist/js/lightgallery.min.js",
-              "./node_modules/@mojs/core/build/mo.min.js",
-              "./node_modules/noty/lib/noty.min.js",
               "src/assets/modernizr.custom.js",
               "src/assets/draggabilly.pkgd.min.js",
               "src/assets/elastiStack.js"
