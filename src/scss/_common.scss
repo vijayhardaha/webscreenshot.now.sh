@@ -159,21 +159,3 @@ ul {
 	display: inline-block;
 	margin: 0 auto;
 }
-#noty_layout__topRight {
-	width: 400px;
-}
-.noty_theme__mint {
-	&.noty_type__info,
-	&.noty_type__information {
-		background-color: $alt-bg-color;
-		border-bottom: 1px solid darken($alt-bg-color, 4%);
-		color: $primary-color;
-	}
-	&.noty_bar {
-		border-radius: 4px;
-		.noty_body {
-			padding: 10px 15px;
-			font-size: 16px;
-		}
-	}
-}
