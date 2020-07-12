@@ -279,7 +279,7 @@ export class HeaderComponent implements OnInit {
     const blob = this.dataURItoBlob(this.screenshot);
     const d = new Date();
     const time = d.getTime();
-    saveAs(blob, `web-screenshot-${time}.png`);
+    saveAs(blob, `web-screenshot-by-vijay-hardaha-${time}.png`);
   }
 
   urlType(): string {
