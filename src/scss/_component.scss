@@ -62,14 +62,16 @@
       border-style: solid;
       border-color: #fbfbfb;
       background: #fbfbfb;
-      box-shadow: 0 10px 7px -7px rgba(0, 0, 0, 0.12),
-        0 0 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 7px -7px rgba($black, 0.12), 0 0 4px rgba($black, 0.1);
       opacity: 0;
       cursor: pointer;
       transform: translate3d(0, 0, -180px);
       transform-style: preserve-3d;
+      border-radius: 5px;
+      img {
+        border-radius: 5px;
+      }
       &.animate {
-        -webkit-transition: all 0.3s ease-out;
         transition: all 0.3s ease-out;
       }
       &.move-back {
@@ -287,7 +289,7 @@
   opacity: 1;
   margin: 10px;
   cursor: default;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d($black);
 }
 .swal-text,
 .swal-footer {
