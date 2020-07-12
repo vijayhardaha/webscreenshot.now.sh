@@ -5,27 +5,27 @@ $body-text-color: #555;
 $primary-color: #fd6767;
 $alt-bg-color: #fcf5e8;
 
-$body-font: 'Lato', sans-sarif;
-$heading-font: 'Oswald', sans-sarif;
+$body-font: "Lato", sans-sarif;
+$heading-font: "Oswald", sans-sarif;
 
 @mixin media-sm-min {
-	@media only screen and (min-width: 992px) {
-		@content;
-	}
+  @media only screen and (min-width: 992px) {
+    @content;
+  }
 }
 
 @mixin media-sm {
-	@media only screen and (max-width: 991px) {
-		@content;
-	}
+  @media only screen and (max-width: 991px) {
+    @content;
+  }
 }
 @mixin media-xs {
-	@media only screen and (max-width: 768px) {
-		@content;
-	}
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
 }
 @mixin media-xxs {
-	@media only screen and (max-width: 475px) {
-		@content;
-	}
+  @media only screen and (max-width: 475px) {
+    @content;
+  }
 }
