@@ -14,10 +14,12 @@
         <form [formGroup]="form" (ngSubmit)="formSubmit()">
           <div class="form-inputs">
             <div class="form-input">
-              <input type="text" formControlName="url" class="form-control" placeholder="e.g. https://loremipsum.io/" [ngClass]="{'animated shake': submitted && url.invalid && url.errors}" />
+              <input type="text" formControlName="url" class="form-control" placeholder="e.g. https://loremipsum.io/"
+                [ngClass]="{'animated shake': submitted && url.invalid && url.errors}" />
             </div>
             <div class="form-btn">
-              <button class="btn" type="submit" [disabled]="submitted" title="Demo"><span class="text">Capture</span></button>
+              <button class="btn" type="submit" [disabled]="submitted" title="Demo"><span
+                  class="text">Capture</span></button>
             </div>
           </div>
           <div class="form-options">
@@ -43,7 +45,8 @@
                 <div class="select-dropdown">
                   <select formControlName="screen" class="form-control" (change)="onScreenChange()">
                     <optgroup *ngFor='let screenGroup of screens' label="{{screenGroup.group}}">
-                      <option *ngFor='let screen of screenGroup.items' [value]="screen.id">{{screen.name}} ({{screen.w}}x{{screen.h}})</option>
+                      <option *ngFor='let screen of screenGroup.items' [value]="screen.id">{{screen.name}}
+                        ({{screen.w}}x{{screen.h}})</option>
                     </optgroup>
                     <option value="custom">Custom</option>
                   </select>
@@ -53,10 +56,12 @@
                 <label>Custom Size</label>
                 <div class="custom-size">
                   <div class="form-input">
-                    <input type="number" formControlName="width" class="form-control" max="2048" step="1" (change)="maxLimitCheck('width')" />
+                    <input type="number" formControlName="width" class="form-control" max="2048" step="1"
+                      (change)="maxLimitCheck('width')" />
                   </div>
                   <div class="form-input">
-                    <input type="number" formControlName="height" class="form-control" max="2048" step="1" (change)="maxLimitCheck('height')" />
+                    <input type="number" formControlName="height" class="form-control" max="2048" step="1"
+                      (change)="maxLimitCheck('height')" />
                   </div>
                 </div>
               </li>

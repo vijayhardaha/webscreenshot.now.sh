@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './parts/header/header.component';
-import { FooterComponent } from './parts/footer/footer.component';
-import { AboutComponent } from './parts/about/about.component';
-import { RadioInputComponent } from './parts/header/radio-input.component';
+import { AppComponent } from "./app.component";
+import { HeaderComponent } from "./parts/header/header.component";
+import { FooterComponent } from "./parts/footer/footer.component";
+import { AboutComponent } from "./parts/about/about.component";
+import { RadioInputComponent } from "./parts/header/radio-input.component";
 
 @NgModule({
   declarations: [
@@ -17,13 +17,8 @@ import { RadioInputComponent } from './parts/header/radio-input.component';
     AboutComponent,
     RadioInputComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
