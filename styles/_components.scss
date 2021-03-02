@@ -9,7 +9,7 @@ svg {
     display: block;
 
     @include media-breakpoint-down("xs") {
-      display: none
+      display: none;
     }
   }
 
@@ -64,31 +64,14 @@ svg {
 .site-header {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: rem(80) 0 rem(60);
 
   @include media-breakpoint-down("sm") {
-    padding: rem(60) 0;
+    padding: rem(60) 0 rem(30);
 
     .share {
-      a {
-        @include get-btn();
-        @include button-variant(#1da1f2, #1da1f2);
-      }
-
-      a {
-        display: inline-flex;
-        align-items: stretch;
-        margin-top: rem(15);
-        padding: 0;
-
-        span {
-          padding: $btn-padding-y-lg $btn-padding-x-lg;
-        }
-
-        .icon {
-          background: rgba($black, 0.1);
-        }
-      }
+      display: none;
     }
   }
 
@@ -105,27 +88,23 @@ svg {
       font-size: rem(18);
     }
 
-    .share {
-      a {
-        display: flex;
-        align-items: center;
-        margin-top: rem(35);
-        padding: 0;
-        border: 0;
 
-        @include animated-link($white) {
-          background-size: 15px 20px;
-        }
+  }
 
-        &:hover,
-        &:focus,
-        &:active {
-          color: $white;
-        }
+  .share {
+    a {
+      display: flex;
+      align-items: center;
+      margin-top: rem(35);
+      padding: 0;
+      border: 0;
 
-        .icon {
-          margin-left: 8px;
-        }
+      @include animated-link($white) {
+        background-size: 15px 20px;
+      }
+
+      .icon {
+        margin-left: 8px;
       }
     }
   }
@@ -151,7 +130,12 @@ svg {
 .search-form {
   width: map-get($grid-breakpoints, "sm");
   max-width: 100%;
-  padding-bottom: rem(100);
+
+  &.main-form {
+    padding: rem(15);
+    border: 1px solid #eaeaea;
+    border-radius: $border-radius;
+  }
 }
 
 // Form field
@@ -224,6 +208,7 @@ svg {
         justify-content: flex-start;
 
         &>div:last-of-type {
+          width: 100%;
           margin-top: rem(8);
         }
       }

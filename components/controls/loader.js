@@ -1,7 +1,7 @@
 const Loader = () => {
   const showCubes = () => {
     let cubes = [];
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 15; i++) {
       cubes.push(
         <div
           key={`cube-loader cube-loader-${i}`}

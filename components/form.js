@@ -97,7 +97,7 @@ const Form = () => {
   ) : image ? (
     <Preview image={image} url={url} reset={() => setData(defaultData)} />
   ) : (
-    <div className="search-form">
+    <div className="search-form main-form">
       <div className="form-field url-field">
         <TextInput
           type="text"
@@ -184,6 +184,9 @@ const Form = () => {
                 value={width}
                 placeholder="1024"
                 onChange={(e) => {
+                  setData({ width: e.target.value });
+                }}
+                onBlur={(e) => {
                   setData({ width: validPx(e.target.value) });
                 }}
               />
@@ -199,6 +202,9 @@ const Form = () => {
                 type="number"
                 value={height}
                 onChange={(e) => {
+                  setData({ height: e.target.value });
+                }}
+                onBlur={(e) => {
                   setData({ height: validPx(e.target.value) });
                 }}
                 placeholder="1024"

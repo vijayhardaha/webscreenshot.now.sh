@@ -9,6 +9,7 @@ const TextInput = ({
   type,
   placeholder,
   onChange,
+  onBlur,
   className,
   value,
   ...props
@@ -23,6 +24,7 @@ const TextInput = ({
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      onBlur={onBlur}
       value={value}
       className={classNames}
     />
@@ -42,6 +44,7 @@ TextInput.propTypes = {
   className: PropTypes.string,
   value: PropTypes.any,
   onChange: PropTypes.func,
+  onBlue: PropTypes.func,
 };
 
 export default TextInput;

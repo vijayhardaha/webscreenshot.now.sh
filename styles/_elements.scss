@@ -90,6 +90,11 @@ img {
     border: $input-border-width solid $input-border-color;
     background-color: $input-bg;
 
+    @include media-breakpoint-up("sm") {
+      width: rem(200);
+      max-width: 100%;
+    }
+
     // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
     @include border-radius($input-border-radius, 0);
 
