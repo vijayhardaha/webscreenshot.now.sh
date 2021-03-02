@@ -6,10 +6,9 @@ import Cors from "cors";
 const getScreenshot = async ({ url, width, height, scale, full, isTweet }) => {
   const browser = await puppeteer.launch({
     args: chrome.args,
-    //executablePath: await chrome.executablePath, // comment this line when working on localhost
-    //headless: chrome.headless, // comment this line when working on localhost
-    executablePath:
-      "./node_modules/puppeteer/.local-chromium/win64-856583/chrome-win/chrome.exe", //uncomment this line when working on localhost
+    executablePath: await chrome.executablePath, // comment this line when working on localhost
+    headless: chrome.headless, // comment this line when working on localhost
+    //executablePath: "./node_modules/puppeteer/.local-chromium/win64-856583/chrome-win/chrome.exe", //uncomment this line when working on localhost
   });
 
   const options = { encoding: "base64", fullPage: full };
