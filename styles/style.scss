@@ -1,0 +1,22 @@
+// Import boostrap functions
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+
+// Import variables
+@import "./variables";
+
+// Import tools
+@import "./functions";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "./mixins";
+
+// Import boostrap css
+@import "../node_modules/bootstrap/scss/root";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// Import elements and components
+@import "./elements";
+@import "./components";
