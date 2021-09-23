@@ -22,7 +22,7 @@
   "dependencies": {
     "chrome-aws-lambda": "^7.0.0",
     "cors": "^2.8.5",
-    "next": "10.0.7",
+    "next": "^11.1.2",
     "puppeteer": "^8.0.0",
     "puppeteer-core": "^8.0.0",
     "react": "17.0.1",
@@ -34,6 +34,7 @@
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
     "file-saver": "^2.0.5",
+    "microtip": "^0.2.2",
     "postcss": "^8.2.6",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-preset-env": "^6.7.0",

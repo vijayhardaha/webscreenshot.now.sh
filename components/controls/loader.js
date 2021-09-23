@@ -1,21 +1,13 @@
 const Loader = () => {
-  const showCubes = () => {
-    let cubes = [];
-    for (let i = 0; i <= 15; i++) {
-      cubes.push(
-        <div
-          key={`cube-loader cube-loader-${i}`}
-          className={`cube-loader cube-loader-${i}`}
-        ></div>
-      );
-    }
-    return cubes;
-  };
   return (
-    <>
-      <div className="cube-spinner">{showCubes()}</div>
-      <p className="text-center">Capturing screenshot, please wait...</p>
-    </>
+    <div className="spinner-wrap">
+      <div className="spinner clock">
+        <div className="dial">
+          <div className="hour hand"></div>
+          <div className="minute hand"></div>
+        </div>
+      </div>
+    </div>
   );
 };
 

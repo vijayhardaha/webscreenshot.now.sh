@@ -4,9 +4,11 @@
 import { useState, useEffect } from "react";
 import { useAsyncCallback } from "actionsack";
 import {
-  AiOutlineCamera,
+  AiOutlineClose,
   AiOutlineDownload,
   AiOutlineCopy,
+  AiOutlineEllipsis,
+  AiOutlineCheck,
 } from "react-icons/ai";
 
 /**
@@ -37,7 +39,7 @@ const Preview = ({ image, url, reset }) => {
     () => new Promise((res) => setTimeout(res, 500))
   );
 
-  const [copy, { loading: loading }] = useAsyncCallback(async (...args) => {
+  const [copy, { loading: copying }] = useAsyncCallback(async (...args) => {
     await copyImage(image);
     showCopied();
   });
@@ -48,51 +50,68 @@ const Preview = ({ image, url, reset }) => {
   });
 
   return (
-    <div className="search-form">
-      <p>
-        Your screenshot is ready! Just click the Download button and download
-        the image!
-      </p>
-      <div className="preview-image">
-        <img src={image} alt={url} />
-      </div>
-      <div className="text-center actions-group">
-        <button
-          type="button"
-          className="btn btn-primary"
-          disabled={saving}
-          onClick={save}
-        >
-          <span className="icon">
-            <AiOutlineDownload />
-          </span>
-          <span className="text">
-            {saving ? "Downloading..." : saved ? "Downloaded!" : "Download"}
-          </span>
-        </button>
-        <button
-          type="button"
-          className="btn btn-light"
-          disabled={!clipboardSupported || loading}
-          onClick={copy}
-        >
-          <span className="icon">
-            <AiOutlineCopy />
-          </span>
-          <span className="text">
-            {loading ? "Copying..." : copied ? "Copied!" : "Copy"}
-          </span>
-        </button>
-        <button
-          type="button"
-          className="btn btn-success"
-          onClick={() => reset()}
-        >
-          <span className="icon">
-            <AiOutlineCamera />
-          </span>
-          <span className="text">Capture Another</span>
-        </button>
+    <div className="preview-wrap">
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h3 className="modal-title">Preview</h3>
+            <div className="actions-group">
+              <button
+                type="button"
+                className="btn btn-primary"
+                disabled={saving}
+                onClick={save}
+                aria-label={
+                  saving ? "Downloading..." : saved ? "Downloaded!" : "Download"
+                }
+                data-microtip-position="top"
+                role="tooltip"
+              >
+                {saving ? (
+                  <AiOutlineEllipsis />
+                ) : saved ? (
+                  <AiOutlineCheck />
+                ) : (
+                  <AiOutlineDownload />
+                )}
+              </button>
+              <button
+                type="button"
+                className="btn btn-light"
+                disabled={!clipboardSupported || copying}
+                onClick={copy}
+                aria-label={
+                  copying ? "Copying..." : copied ? "Copied!" : "Copy"
+                }
+                data-microtip-position="top"
+                role="tooltip"
+              >
+                {copying ? (
+                  <AiOutlineEllipsis />
+                ) : copied ? (
+                  <AiOutlineCheck />
+                ) : (
+                  <AiOutlineCopy />
+                )}
+              </button>
+              <button
+                type="button"
+                className="btn btn-dark"
+                onClick={() => reset()}
+                aria-label="Close preview"
+                data-microtip-position="top"
+                role="tooltip"
+              >
+                <AiOutlineClose />
+              </button>
+            </div>
+          </div>
+          <div className="modal-body">
+            <div className="preview">
+              <img src={image} alt={url} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

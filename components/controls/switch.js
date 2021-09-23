@@ -9,7 +9,7 @@ const SwitchInput = ({ id, checked, className, onChange, ...props }) => {
     "is-checked": checked,
   });
   const btnClasses = classnames("btn", {
-    "btn-success": checked,
+    "btn-primary": checked,
     "btn-light": !checked,
   });
   return (

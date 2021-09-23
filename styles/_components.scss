@@ -1,53 +1,3 @@
-// Svgs
-svg {
-
-  &.svg-top-right,
-  &.svg-top-left,
-  &.svg-bottom-left {
-    position: absolute;
-    height: auto;
-    display: block;
-
-    @include media-breakpoint-down("xs") {
-      display: none;
-    }
-  }
-
-  &.svg-top-right {
-    top: 0;
-    right: 0;
-    width: 60%;
-  }
-
-  &.svg-top-left {
-    top: 0;
-    left: 5%;
-  }
-
-  &.svg-bottom-left {
-    bottom: -15rem;
-    left: 0;
-  }
-
-  &.footer-svg {
-    width: 100%;
-    height: 6rem;
-    display: block;
-
-    @include media-breakpoint-up("md") {
-      height: 5rem;
-    }
-
-    @include media-breakpoint-up("lg") {
-      height: 8rem;
-    }
-
-    @include media-breakpoint-up("xl") {
-      height: 10rem;
-    }
-  }
-}
-
 //Page
 
 #page {
@@ -62,80 +12,49 @@ svg {
 
 // Header
 .site-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: rem(80) 0 rem(60);
-
-  @include media-breakpoint-down("sm") {
-    padding: rem(60) 0 rem(30);
-
-    .share {
-      display: none;
-    }
-  }
-
-  @include media-breakpoint-up("md") {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    &>div {
-      max-width: 50%;
-    }
-
-    .site-tagline {
-      font-size: rem(18);
-    }
-
-
-  }
-
-  .share {
-    a {
-      display: flex;
-      align-items: center;
-      margin-top: rem(35);
-      padding: 0;
-      border: 0;
-
-      @include animated-link($white) {
-        background-size: 15px 20px;
-      }
-
-      .icon {
-        margin-left: 8px;
-      }
-    }
-  }
-
-  .site-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  padding: rem(15) 0;
+  text-align: center;
 
   .site-title {
-    margin: 0 0 rem(18);
-    letter-spacing: 0.34px;
-    word-spacing: 0.5rem;
+    margin: 0 0 rem(8);
+    text-transform: uppercase;
+    color: $primary;
+    font-family: $font-family-cursive;
+    font-weight: 700;
+    @include font-size(54px);
+  }
+
+  .site-tagline {
+    margin: 0;
+    letter-spacing: 0.5px;
     text-transform: uppercase;
     color: $secondary;
-    font-family: $font-family-cursive;
-    font-weight: 400;
+    font-weight: $font-weight-bold;
+    @include font-size(12px);
+  }
+}
+
+// Divider
+.divider {
+  position: relative;
+  height: 1px;
+  margin: rem(30) 0;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 5%;
+    left: 5%;
+    width: 90%;
+    height: 1px;
+    content: "";
+    background-image: linear-gradient(to right, transparent, rgba($gray-200, 100), transparent);
   }
 }
 
 // Form
 .search-form {
-  width: map-get($grid-breakpoints, "sm");
-  max-width: 100%;
-
-  &.main-form {
-    padding: rem(15);
-    border: 1px solid #eaeaea;
-    border-radius: $border-radius;
-  }
+  margin-bottom: rem(80);
 }
 
 // Form field
@@ -144,50 +63,47 @@ svg {
 
   &.url-field {
     display: flex;
-    flex-direction: column;
-    margin-bottom: rem(60);
+    align-items: stretch;
 
     .input-control {
-      height: rem(46);
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
+      height: auto;
+      flex: 1;
+      border-right: 0;
+      border-radius: $border-radius 0 0 $border-radius;
       box-shadow: none !important;
+
+      &:focus {
+        border-color: $primary;
+      }
 
       &.processing {
         pointer-events: none;
       }
     }
 
-    .btn {
+    .submit-btn {
       height: rem(42);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0;
       transition-delay: 0.8s;
-      text-transform: uppercase;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
+      color: $secondary;
+      border-radius: 0 $border-radius $border-radius 0;
       font-weight: 700;
 
       &.processing {
         height: rem(46);
-      }
-
-      svg {
-        width: 22px;
-        height: 22px;
-      }
-
-      span {
-        margin-right: 8px;
-        line-height: 1;
       }
     }
   }
 }
 
 .advance-options {
+  margin: rem(15) 0;
+  padding: rem(15);
+  border: 1px solid $gray-300;
+  border-radius: $border-radius;
+
   .processing {
     pointer-events: none;
   }
@@ -255,27 +171,87 @@ svg {
   }
 }
 
-// About
-.about {
-  padding: 0 0 rem(80) 0;
+// Preview
+.preview-wrap {
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  backdrop-filter: blur(4px);
 
-  .content {
-    padding-top: rem(100);
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: rem(8);
+    padding: 1rem;
+    pointer-events: none;
+
+    @include media-breakpoint-up("md") {
+      max-width: rem(798);
+      margin: rem(24) auto;
+    }
   }
-}
 
-.section-title {
-  margin: 0 0 rem(30);
-  text-transform: uppercase;
-  color: $primary;
-  font-weight: 900;
+  .modal-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius;
+    outline: 0;
+    background-color: $white;
+    background-clip: padding-box;
+  }
+
+  .modal-header {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid $gray-300;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background: $white;
+  }
+
+  .modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+  }
+
+  .modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+  }
+
+  .preview {
+    img {
+      width: 100%;
+    }
+  }
+
+  .actions-group {
+    .btn {
+      margin: 0 rem(4);
+    }
+  }
 }
 
 // Footer
 .site-footer {
-  color: $white;
-  background: $primary;
-  font-size: em(14);
+  color: $secondary;
+  font-size: rem(14);
 
   .footer-inner {
     display: flex;
@@ -308,14 +284,8 @@ svg {
 
       li {
         +li {
-          margin-left: em(15);
+          margin-left: rem(15);
         }
-      }
-    }
-
-    a {
-      @include animated-link($white) {
-        background-size: 15px 6px;
       }
     }
   }

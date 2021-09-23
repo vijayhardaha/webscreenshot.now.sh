@@ -1,0 +1,90 @@
+@font-face {
+  font-family: 'Cambria';
+  src: url('fonts/Cambria-Italic.eot');
+  src: url('fonts/Cambria-Italic.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Cambria-Italic.woff2') format('woff2'),
+    url('fonts/Cambria-Italic.woff') format('woff'),
+    url('fonts/Cambria-Italic.ttf') format('truetype'),
+    url('fonts/Cambria-Italic.svg#Cambria-Italic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cambria';
+  src: url('fonts/Cambria.eot');
+  src: url('fonts/Cambria.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Cambria.woff2') format('woff2'),
+    url('fonts/Cambria.woff') format('woff'),
+    url('fonts/Cambria.ttf') format('truetype'),
+    url('fonts/Cambria.svg#Cambria') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cambria';
+  src: url('fonts/Cambria-Bold.eot');
+  src: url('fonts/Cambria-Bold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Cambria-Bold.woff2') format('woff2'),
+    url('fonts/Cambria-Bold.woff') format('woff'),
+    url('fonts/Cambria-Bold.ttf') format('truetype'),
+    url('fonts/Cambria-Bold.svg#Cambria-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cambria';
+  src: url('fonts/Cambria-BoldItalic.eot');
+  src: url('fonts/Cambria-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Cambria-BoldItalic.woff2') format('woff2'),
+    url('fonts/Cambria-BoldItalic.woff') format('woff'),
+    url('fonts/Cambria-BoldItalic.ttf') format('truetype'),
+    url('fonts/Cambria-BoldItalic.svg#Cambria-BoldItalic') format('svg');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Regular.eot');
+  src: url('fonts/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Montserrat-Regular.woff2') format('woff2'),
+    url('fonts/Montserrat-Regular.woff') format('woff'),
+    url('fonts/Montserrat-Regular.ttf') format('truetype'),
+    url('fonts/Montserrat-Regular.svg#Montserrat-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Bold.eot');
+  src: url('fonts/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Montserrat-Bold.woff2') format('woff2'),
+    url('fonts/Montserrat-Bold.woff') format('woff'),
+    url('fonts/Montserrat-Bold.ttf') format('truetype'),
+    url('fonts/Montserrat-Bold.svg#Montserrat-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-SemiBold.eot');
+  src: url('fonts/Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Montserrat-SemiBold.woff2') format('woff2'),
+    url('fonts/Montserrat-SemiBold.woff') format('woff'),
+    url('fonts/Montserrat-SemiBold.ttf') format('truetype'),
+    url('fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

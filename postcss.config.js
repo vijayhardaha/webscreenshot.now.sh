@@ -1,4 +1,5 @@
 module.exports = {
+  webpack5: false,
   plugins: [
     "postcss-flexbugs-fixes",
     [
@@ -12,6 +13,6 @@ module.exports = {
           "custom-properties": false,
         },
       },
-    ]
+    ],
   ],
 };

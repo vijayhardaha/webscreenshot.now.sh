@@ -32,14 +32,6 @@ const Header = () => {
           tweets in HD quality.
         </p>
       </div>
-      <div className="share">
-        <a href={shareUrl} type="button">
-          <span className="text">Share on Twitter</span>
-          <span className="icon">
-            <FaTwitter />
-          </span>
-        </a>
-      </div>
     </header>
   );
 };

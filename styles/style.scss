@@ -1,9 +1,9 @@
 // Import boostrap functions
 @import "../node_modules/bootstrap/scss/functions";
-@import "../node_modules/bootstrap/scss/variables";
 
 // Import variables
 @import "./variables";
+@import "../node_modules/bootstrap/scss/variables";
 
 // Import tools
 @import "./functions";
@@ -11,6 +11,7 @@
 @import "./mixins";
 
 // Import boostrap css
+@import "./font-face";
 @import "../node_modules/bootstrap/scss/root";
 @import "../node_modules/bootstrap/scss/reboot";
 @import "../node_modules/bootstrap/scss/type";
@@ -20,3 +21,5 @@
 // Import elements and components
 @import "./elements";
 @import "./components";
+@import "./loader";
+@import 'microtip/microtip';

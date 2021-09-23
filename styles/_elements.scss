@@ -1,20 +1,6 @@
-a {
-  &:not(.btn) {
-    @include animated-link($link-color);
-  }
-}
-
 img {
   max-width: 100%;
   vertical-align: middle;
-}
-
-.preview-image {
-  img {
-    padding: 4px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-  }
 }
 
 @keyframes move {
@@ -29,7 +15,6 @@ img {
 
 .input-control {
   width: 100%;
-  height: $input-height;
   display: block;
   padding: $input-padding-y $input-padding-x;
   color: $input-color;
@@ -85,14 +70,14 @@ img {
 .form-field {
   .input-control__control {
     width: 100%;
+    max-width: 100%;
     height: $input-height;
     cursor: pointer;
     border: $input-border-width solid $input-border-color;
     background-color: $input-bg;
 
-    @include media-breakpoint-up("sm") {
-      width: rem(200);
-      max-width: 100%;
+    @include media-breakpoint-up("md") {
+      width: rem(350);
     }
 
     // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
@@ -175,163 +160,14 @@ $value in $theme-colors {
 }
 
 .btn-light {
-  border-color: #ddd;
-  background-color: #fafafa;
+  border-color: $gray-200;
 }
 
 .error {
-  margin: $alert-margin-bottom 0 0 0;
-  color: $red;
-}
-
-.actions-group {
-  margin: rem(25) 0;
-
-  .btn {
-    overflow: hidden;
-    display: inline-flex;
-    align-items: stretch;
-    justify-content: center;
-    margin: 0 rem(4) rem(15);
-    padding: 0;
-
-    span {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 8px;
-      list-style: none;
-      font-size: rem(14);
-    }
-
-    .icon {
-      padding: 0 $btn-padding-x;
-      background: rgba($black, 0.1);
-    }
-
-    .text {
-      padding: $btn-padding-y ($btn-padding-x * 0.25);
-    }
-  }
-}
-
-.cube-spinner {
-  position: relative;
-  width: 323px;
-  height: 323px;
-  margin: auto;
-
-  .cube-loader {
-    position: absolute;
-    width: 59px;
-    height: 59px;
-    margin: auto;
-    animation: cube-loader-move 3s infinite ease-in-out;
-    background-color: $light-blue;
-
-    &.cube-loader-1 {
-      top: 0px;
-      left: 82px;
-      animation-delay: 0.15s;
-    }
-
-    &.cube-loader-2 {
-      top: 0px;
-      left: 165px;
-      animation-delay: 0.3s;
-    }
-
-    &.cube-loader-3 {
-      top: 0px;
-      left: 247px;
-      animation-delay: 0.45s;
-    }
-
-    &.cube-loader-4 {
-      top: 82px;
-      left: 0px;
-      animation-delay: 0.15s;
-    }
-
-    &.cube-loader-5 {
-      top: 82px;
-      left: 82px;
-      animation-delay: 0.3s;
-    }
-
-    &.cube-loader-6 {
-      top: 82px;
-      left: 165px;
-      animation-delay: 0.45s;
-    }
-
-    &.cube-loader-7 {
-      top: 82px;
-      left: 247px;
-      animation-delay: 0.6s;
-    }
-
-    &.cube-loader-8 {
-      top: 165px;
-      left: 0px;
-      animation-delay: 0.3s;
-    }
-
-    &.cube-loader-9 {
-      top: 165px;
-      left: 82px;
-      animation-delay: 0.45s;
-    }
-
-    &.cube-loader-10 {
-      top: 165px;
-      left: 165px;
-      animation-delay: 0.6s;
-    }
-
-    &.cube-loader-11 {
-      top: 165px;
-      left: 247px;
-      animation-delay: 0.75s;
-    }
-
-    &.cube-loader-12 {
-      top: 247px;
-      left: 0px;
-      animation-delay: 0.45s;
-    }
-
-    &.cube-loader-13 {
-      top: 247px;
-      left: 82px;
-      animation-delay: 0.6s;
-    }
-
-    &.cube-loader-14 {
-      top: 247px;
-      left: 165px;
-      animation-delay: 0.75s;
-    }
-
-    &.cube-loader-15 {
-      top: 247px;
-      left: 247px;
-      animation-delay: 0.9s;
-    }
-
-  }
-}
-
-@keyframes cube-loader-move {
-  35% {
-    transform: scale(0.005);
-  }
-
-  50% {
-    transform: scale(1.7);
-  }
-
-  65% {
-    transform: scale(0.005);
-  }
+  margin: 0 0 rem(15);
+  padding: rem(10) rem(15);
+  color: $white;
+  border-radius: $border-radius;
+  background: $red;
+  @include font-size(14px);
 }

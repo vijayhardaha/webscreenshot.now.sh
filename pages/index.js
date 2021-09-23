@@ -7,7 +7,6 @@ import Head from "next/head";
  * Internal dependancies
  */
 import Main from "../components/main";
-import About from "../components/about";
 import Footer from "../components/footer";
 
 export default function Home() {
@@ -160,9 +159,7 @@ export default function Home() {
           }}
         />
       </Head>
-
       <Main />
-      <About />
       <Footer />
     </div>
   );
