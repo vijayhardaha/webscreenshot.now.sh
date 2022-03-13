@@ -1,25 +1,29 @@
 // Import boostrap functions
-@import "../node_modules/bootstrap/scss/functions";
+@import "~bootstrap/scss/functions";
 
 // Import variables
 @import "./variables";
-@import "../node_modules/bootstrap/scss/variables";
+@import "~bootstrap/scss/variables";
 
 // Import tools
 @import "./functions";
-@import "../node_modules/bootstrap/scss/mixins";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
 @import "./mixins";
 
 // Import boostrap css
-@import "./font-face";
-@import "../node_modules/bootstrap/scss/root";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/type";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/utilities";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/helpers/clearfix";
+@import "~bootstrap/scss/utilities/api";
 
 // Import elements and components
-@import "./elements";
 @import "./components";
 @import "./loader";
-@import 'microtip/microtip';

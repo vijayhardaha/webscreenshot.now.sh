@@ -17,7 +17,7 @@ const Footer = () => {
     {
       id: "pph",
       name: "Hire Me",
-      label: "Hire me through PeoplePerHour",
+      label: "Hire me",
       url: "https://pph.me/vijayhardaha/",
     },
   ];
@@ -26,7 +26,7 @@ const Footer = () => {
     <footer className="site-footer">
       <div className="container">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 col-lg-10 offset-lg-1">
             <div className="footer-inner">
               <div className="copyright">
                 <p>
@@ -34,10 +34,8 @@ const Footer = () => {
                   <a
                     href="https://twitter.com/vijayhardaha"
                     target="_blank"
+                    rel="noreferrer"
                     title="Vijay Hardaha"
-                    aria-label="Contact Vijay Hardaha on Twitter"
-                    data-microtip-position="top"
-                    role="tooltip"
                   >
                     Vijay Hardaha
                   </a>
@@ -51,10 +49,8 @@ const Footer = () => {
                         <a
                           href={url}
                           target="_blank"
-                          title={name}
-                          aria-label={label}
-                          data-microtip-position="top"
-                          role="tooltip"
+                          title={label}
+                          rel="noreferrer"
                         >
                           {name}
                         </a>

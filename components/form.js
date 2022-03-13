@@ -1,78 +1,63 @@
 /**
  * External dependancies
  */
-import { useReducer } from "react";
-import Select from "react-select";
-import { IoMdExpand } from "react-icons/io";
-
+import { useReducer, useEffect } from "react";
 /**
  * Internal dependancies
  */
-import SettingRow from "./controls/setting";
-import SwitchInput from "./controls/switch";
-import TextInput from "./controls/input";
 import Loader from "./controls/loader";
 import Preview from "./controls/preview";
-import { defaultData, screenOptions } from "../lib/constant";
-import { isValidUrl, isTwitterUrl, validPx, formatUrl } from "../lib/util";
+import { getResolution, defaultData, screenOptions } from "../lib/constant";
+import { isValidUrl, isTwitterUrl, formatUrl } from "../lib/util";
 import { getImage } from "../lib/api";
 
 const Form = () => {
   const [
     {
-      url,
-      full,
-      scale,
-      custom,
-      width,
-      height,
-      screen,
-      valid,
-      ready,
-      loading,
       error,
+      format,
+      full,
+      height,
       image,
+      loading,
+      ready,
+      scale,
+      screen,
+      url,
+      width,
     },
     setData,
   ] = useReducer((state, newState) => ({ ...state, ...newState }), defaultData);
 
-  const setUrl = (url) => {
-    const isValid = isValidUrl(url);
-    setData({ valid: isValid });
-    if (isValid) {
-      setData({ url: formatUrl(url) });
-    } else {
-      setData({ url });
-    }
-    readyToSubmit(url);
-  };
+  useEffect(() => {
+    const screenData = getResolution(screen);
+    setData({ width: screenData.w, height: screenData.h });
+  }, [screen]);
 
-  const readyToSubmit = (url) => {
-    setData({ error: false });
-
+  useEffect(() => {
+    setData({ error: false, ready: false });
     if (isValidUrl(url)) {
-      setData({ ready: true });
+      setData({ ready: true, url: formatUrl(url) });
     } else {
-      setData({ ready: false });
       setData({
+        ready: false,
         error: "Please insert a valid URL of the web page to capture.",
       });
     }
-  };
+  }, [url]);
 
   const handleSubmit = async () => {
-    readyToSubmit(url);
-
     if (ready) {
       setData({ loading: true });
 
       const args = {
         url: url,
-        width: custom ? width : screen.w,
-        height: custom ? height : screen.h,
+        width: width,
+        height: height,
         scale: scale ? 2 : 1,
         full: full,
         isTweet: isTwitterUrl(url),
+        format: format,
       };
 
       const response = await getImage(args);
@@ -97,142 +82,182 @@ const Form = () => {
     <>
       {loading ? (
         <Loader />
-      ) : image ? (
-        <Preview image={image} url={url} reset={() => setData(defaultData)} />
       ) : (
-        <></>
-      )}
-      <div className="search-form main-form">
-        {url.length && error ? <p className="error">{error}</p> : <></>}
-
-        <h5>Enter the webpage or twitter feed url here:</h5>
-
-        <div className="form-field url-field">
-          <TextInput
-            type="text"
-            id="url-input"
-            className="text-input"
-            placeholder="https://example.com"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
+        image && (
+          <Preview
+            image={image}
+            url={url}
+            reset={() => setData({ loading: false, image: false })}
           />
-          <button
-            type="button"
-            className="btn btn-primary submit-btn"
-            disabled={!ready || loading}
-            onClick={() => handleSubmit()}
-            aria-label={
-              !ready || loading
-                ? "Enter website url to enable the button"
-                : "Press to generate screenshot"
-            }
-            data-microtip-position="top"
-            role="tooltip"
-          >
-            <IoMdExpand />
-          </button>
+        )
+      )}
+
+      {url.length > 0 && error && (
+        <p className="alert alert-danger" role="alert">
+          {error}
+        </p>
+      )}
+
+      <div className="card border-0 shadow search-form main-form ">
+        <div className="card-header">
+          <input
+            type="text"
+            id="url"
+            className="form-control form-control-lg"
+            placeholder="Enter URL like https://example.com"
+            value={url}
+            onChange={(e) => setData({ url: e.target.value })}
+          />
         </div>
 
-        <div className="advance-options">
-          <SettingRow
-            id="full-screen-field"
-            label="Full Screen"
-            desc="Capture full page screenshot."
-          >
-            <SwitchInput
-              id="full-screen-field"
-              checked={full}
-              onChange={(e) => {
-                setData({ full: e.target.checked });
-              }}
-            />
-          </SettingRow>
+        <div className="advance-options card-body">
+          <div className="row">
+            <div className="col-12 col-md-6">
+              <div className="form-field mb-4" id="screen-field">
+                <label htmlFor="screen">Screen Size</label>
+                <div className="field-input">
+                  <select
+                    id="screen"
+                    className="form-select"
+                    value={screen}
+                    onChange={(e) => {
+                      setData({ screen: e.target.value });
+                    }}
+                  >
+                    {screenOptions &&
+                      screenOptions.map((group, idx) => (
+                        <optgroup key={idx} label={group.label}>
+                          {group.options.map((o, key) => (
+                            <option key={key} value={o.value}>
+                              {o.label}
+                            </option>
+                          ))}
+                        </optgroup>
+                      ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-6">
+              <div className="form-field mb-4" id="format-field">
+                <label htmlFor="format">Format</label>
+                <div className="field-input">
+                  <select
+                    id="format"
+                    className="form-select"
+                    value={format}
+                    onChange={(e) => {
+                      setData({ format: e.target.value });
+                    }}
+                  >
+                    <option value="jpeg">.jpeg</option>
+                    <option value="png">.png</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-6">
+              <div className="form-field mb-4 mb-md-0" id="width-field">
+                <label htmlFor="width">Width</label>
+                <div className="field-input d-flex align-items-center">
+                  <input
+                    type="range"
+                    className="form-range"
+                    min="300"
+                    max="1920"
+                    id="width"
+                    value={width}
+                    onChange={(e) => {
+                      setData({ width: e.target.value });
+                    }}
+                  />
+                  <div className="ms-2" style={{ width: `90px` }}>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={width}
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-md-6">
+              <div className="form-field mb-4 mb-md-0" id="height-field">
+                <label htmlFor="height">Height</label>
+                <div className="field-input d-flex align-items-center">
+                  <input
+                    type="range"
+                    className="form-range"
+                    min="300"
+                    max="1920"
+                    id="height"
+                    value={height}
+                    onChange={(e) => {
+                      setData({ height: e.target.value });
+                    }}
+                    disabled={full}
+                  />
+                  <div className="ms-2" style={{ width: `90px` }}>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={height}
+                      disabled
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <SettingRow
-            id="scale-quality-field"
-            label="HD Quality"
-            desc="Capture screenshot in high resolution."
-          >
-            <SwitchInput
-              id="scale-quality-field"
-              checked={scale}
-              onChange={(e) => {
-                setData({ scale: e.target.checked });
-              }}
-            />
-          </SettingRow>
-
-          <SettingRow
-            id="custom-size-field"
-            label="Use Custom Size"
-            desc="Custom width and height units for screenshot output."
-          >
-            <SwitchInput
-              id="custom-size-field"
-              checked={custom}
-              onChange={(e) => {
-                setData({ custom: e.target.checked });
-              }}
-            />
-          </SettingRow>
-
-          {custom ? (
-            <>
-              <SettingRow
-                id="custom-width-field"
-                label="Width"
-                desc="Set the width(px) for screenshot output."
-              >
-                <TextInput
-                  id="custom-width-field"
-                  type="number"
-                  value={width}
-                  placeholder="1024"
+        <div className="card-footer">
+          <div className="row d-flex align-items-center">
+            <div className="col-12 col-md-8 mb-3 text-md-start text-center mb-md-0">
+              <div className="form-check form-check-inline form-switch">
+                <label htmlFor="">Full Screen</label>
+                <input
+                  checked={full}
+                  className="form-check-input"
+                  id="full-screen-field"
+                  type="checkbox"
                   onChange={(e) => {
-                    setData({ width: e.target.value });
-                  }}
-                  onBlur={(e) => {
-                    setData({ width: validPx(e.target.value) });
+                    setData({ full: e.target.checked });
                   }}
                 />
-              </SettingRow>
-
-              <SettingRow
-                id="custom-height-field"
-                label="Height"
-                desc="Set the height(px) for screenshot output."
-              >
-                <TextInput
-                  id="custom-height-field"
-                  type="number"
-                  value={height}
+              </div>
+              <div className="form-check form-check-inline form-switch">
+                <label htmlFor="quality">HD Quality</label>
+                <input
+                  checked={scale}
+                  className="form-check-input"
+                  id="quality"
+                  type="checkbox"
                   onChange={(e) => {
-                    setData({ height: e.target.value });
+                    setData({ scale: e.target.checked });
                   }}
-                  onBlur={(e) => {
-                    setData({ height: validPx(e.target.value) });
-                  }}
-                  placeholder="1024"
                 />
-              </SettingRow>
-            </>
-          ) : (
-            <SettingRow
-              id="screen-size-field"
-              label="Screen Size"
-              desc="Preferred units of screenshot output."
-            >
-              <Select
-                instanceId="screen-size-field"
-                classNamePrefix="input-control"
-                options={screenOptions}
-                value={screen}
-                onChange={(value) => {
-                  setData({ screen: value });
-                }}
-              />
-            </SettingRow>
-          )}
+              </div>
+            </div>
+            <div className="col-12 col-md-4 text-md-end d-md-block d-grid">
+              <button
+                type="button"
+                className="btn btn-primary btn-lg"
+                disabled={!ready || loading}
+                onClick={() => handleSubmit()}
+                aria-label={
+                  !ready || loading
+                    ? "Enter website url to enable the button"
+                    : "Press to generate screenshot"
+                }
+                data-microtip-position="top"
+                role="tooltip"
+              >
+                Capture Screen
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

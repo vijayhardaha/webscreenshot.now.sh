@@ -1,29 +1,40 @@
 $browser-context: 16; // Default
 
-$white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
-$black: #000 !default;
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
 
-$body-color: #7e858a;
-$primary: #e6b200;
-$secondary: #26313a;
-$red: #e91e63;
+$body-color: $gray-800;
+$body-bg: #f3f4f5;
+$danger: #e91e63;
+$primary: #1a73e8;
+$dark: $gray-800;
+$light: $gray-200;
+$font-family-base: "Poppins", sans-serif;
 
-$font-family-base: "Montserrat";
-$font-family-cursive: "Cambria";
-
-$link-color: $primary;
 $link-decoration: none;
 $link-hover-decoration: underline;
 
-$input-border-color: $gray-300;
-$input-focus-border-color: $primary;
-$input-focus-box-shadow: none;
+$box-shadow: 0 0.5rem 0.75rem -0.25rem rgba(39, 48, 54, 0.05);
+$border-radius: 0.5rem;
+$card-cap-bg: $white;
+$card-box-shadow: $box-shadow;
+$card-title-spacer-y: 1rem;
+$card-cap-padding-y: 1rem;
+$card-cap-padding-x: 1rem;
+$card-border-color: $gray-200;
+$card-border-radius: $border-radius;
+$input-disabled-bg: $gray-100;
+$input-group-addon-bg: darken($gray-100, 3%);
+$input-border-color: $body-bg;
+$enable-validation-icons: false;
+$form-switch-width: 2.875em;
+$form-check-input-width: $form-switch-width * 0.5;

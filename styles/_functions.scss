@@ -7,9 +7,3 @@ $browser-context: 16; // Default
 @function rem($pixels, $context: $browser-context) {
   @return #{$pixels/$context}rem;
 }
-
-@function svg-bg($string, $color: $primary) {
-  $string: str-replace($string, "currentColor", $color);
-  $string: escape-svg($string);
-  @return $string;
-}

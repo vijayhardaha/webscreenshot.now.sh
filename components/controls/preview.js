@@ -10,6 +10,7 @@ import {
   AiOutlineEllipsis,
   AiOutlineCheck,
 } from "react-icons/ai";
+import Image from "next/image";
 
 /**
  * Internal dependancies
@@ -17,7 +18,7 @@ import {
 import { copyImage, saveImage } from "../../lib/util";
 
 const Preview = ({ image, url, reset }) => {
-  const clipboardSupported = () => {
+  const ClipboardSupported = () => {
     const [isClipboardSupports, setClipboardSupport] = useState(false);
 
     useEffect(() => {
@@ -78,7 +79,7 @@ const Preview = ({ image, url, reset }) => {
               <button
                 type="button"
                 className="btn btn-light"
-                disabled={!clipboardSupported || copying}
+                disabled={!ClipboardSupported || copying}
                 onClick={copy}
                 aria-label={
                   copying ? "Copying..." : copied ? "Copied!" : "Copy"
@@ -108,7 +109,7 @@ const Preview = ({ image, url, reset }) => {
           </div>
           <div className="modal-body">
             <div className="preview">
-              <img src={image} alt={url} />
+              <Image src={image} alt={url} layout="fill" />
             </div>
           </div>
         </div>

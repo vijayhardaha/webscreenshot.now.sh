@@ -9,8 +9,8 @@ const SettingRow = ({ id, className, label, desc, children }) => {
   return (
     <div className={classNames}>
       <div>
-        <p className="label">{label}</p>
-        {desc.length ? <p className="desc">{desc}</p> : <></>}
+        <label className="label">{label}</label>
+        <p className="desc">{desc.length && desc}</p>
       </div>
       <div>{children}</div>
     </div>
