@@ -91,7 +91,7 @@ export default function Document() {
         <meta name="theme-color" content="#2d8ffa" />
         <meta
           name="google-site-verification"
-          content="9T8_EMb6UiUZR6CeIs8Dd6687D-o48lwZEjb6cPPckg"
+          content="YMrzWpiu-ZoKVloJLdKStN_kcTwWX7vHvyVuT2KdzoU"
         />
       </Head>
       <body>
