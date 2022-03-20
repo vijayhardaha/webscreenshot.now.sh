@@ -34,7 +34,7 @@ const Footer = () => {
                   <a
                     href="https://twitter.com/vijayhardaha"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     title="Vijay Hardaha"
                   >
                     Vijay Hardaha
@@ -50,7 +50,7 @@ const Footer = () => {
                           href={url}
                           target="_blank"
                           title={label}
-                          rel="noreferrer"
+                          rel="noopener noreferrer"
                         >
                           {name}
                         </a>

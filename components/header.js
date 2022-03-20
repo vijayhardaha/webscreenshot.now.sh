@@ -28,11 +28,11 @@ const Header = () => {
         </p>
         <div>
           <a
-            href="https://github.com/vijayhardaha"
+            href="https://github.com/vijayhardaha/webscreenshot.now.sh"
             target="_blank"
-            rel="noreferrer"
             title="Vijay Hardaha"
             className="btn btn-outline-dark"
+            rel="noopener noreferrer"
           >
             View on Github
           </a>
