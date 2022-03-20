@@ -3,48 +3,6 @@ const cors = require("cors");
 const nc = require("next-connect");
 const createError = require("http-errors");
 
-const minimalArgs = [
-  "--autoplay-policy=user-gesture-required",
-  "--disable-background-networking",
-  "--disable-background-timer-throttling",
-  "--disable-backgrounding-occluded-windows",
-  "--disable-breakpad",
-  "--disable-client-side-phishing-detection",
-  "--disable-component-update",
-  "--disable-default-apps",
-  "--disable-dev-shm-usage",
-  "--disable-dev-shm-usage",
-  "--disable-domain-reliability",
-  "--disable-extensions",
-  "--disable-features=AudioServiceOutOfProcess",
-  "--disable-gpu",
-  "--disable-hang-monitor",
-  "--disable-ipc-flooding-protection",
-  "--disable-notifications",
-  "--disable-offer-store-unmasked-wallet-cards",
-  "--disable-popup-blocking",
-  "--disable-print-preview",
-  "--disable-prompt-on-repost",
-  "--disable-renderer-backgrounding",
-  "--disable-setuid-sandbox",
-  "--disable-speech-api",
-  "--disable-sync",
-  "--headless",
-  "--hide-scrollbars",
-  "--ignore-gpu-blacklist",
-  "--metrics-recording-only",
-  "--mute-audio",
-  "--no-default-browser-check",
-  "--no-first-run",
-  "--no-pings",
-  "--no-sandbox",
-  "--no-zygote",
-  "--password-store=basic",
-  "--single-process",
-  "--use-gl=swiftshader",
-  "--use-mock-keychain",
-];
-
 const getScreenshot = async ({
   url,
   width,
@@ -54,11 +12,10 @@ const getScreenshot = async ({
   isTweet,
   format,
 }) => {
-  const executablePath = await chrome.executablePath;
-
   const browser = await chrome.puppeteer.launch({
-    args: minimalArgs,
-    executablePath: executablePath || process.env.PUPPETEER_EXECUTABLE_PATH,
+    args: chrome.args,
+    executablePath: await chrome.executablePath, // comment this line when working on localhost
+    headless: true,
   });
 
   let buffer;
@@ -68,18 +25,14 @@ const getScreenshot = async ({
 
   if (isTweet) {
     await page.setViewport({
-      width: 767,
-      height: 800,
+      width: 600,
+      height: 600,
       deviceScaleFactor: 2,
     });
-    const tUrl = `https://publish.twitter.com/?query=${url}&widget=Tweet`;
+    options.fullPage = false;
+    const tUrl = `https://twitframe.com/show?url=${encodeURI(url)}`;
     await page.goto(tUrl, { waitUntil: "networkidle2" });
-    await page.waitForTimeout(3000);
-    await page.evaluate((sel) => {
-      const elem = document.querySelector(sel);
-      elem.parentNode.removeChild(elem);
-    }, "body #top");
-    const selector = "body #WidgetConfigurator-preview .twitter-tweet";
+    const selector = "body .twitter-tweet";
     await page.waitForSelector(selector); // wait for the selector to load
     const element = await page.$(selector); // declare a variable with an ElementHandle
     buffer = await element.screenshot(options);
