@@ -1,5 +1,6 @@
-const chromium = require("chrome-aws-lambda");
+const chrome = require("chrome-aws-lambda");
 const cors = require("cors");
+const puppeteer = require("puppeteer-core");
 const createError = require("http-errors");
 
 const getScreenshot = async ({
@@ -11,58 +12,28 @@ const getScreenshot = async ({
 	isTweet,
 	format,
 }) => {
+	const isLocal = process.env.IS_LOCAL || false;
+
+	const browser = await puppeteer.launch({
+		args: [...chrome.args, "--hide-scrollbars"],
+		defaultViewport: chrome.defaultViewport,
+		executablePath: isLocal
+			? process.env.PUPPETEER_EXECUTABLE_PATH
+			: await chrome.executablePath,
+		headless: isLocal ? true : chrome.headless,
+		ignoreHTTPSErrors: true,
+	});
+
+	let buffer;
+
+	const options = {
+		delay: "500ms",
+		encoding: "base64",
+		fullPage: full,
+		type: format,
+	};
+
 	try {
-		const isLocal = process.env.IS_LOCAL || false;
-
-		const browser = await chromium.puppeteer.launch({
-			args: [
-				...chromium.args,
-				"--autoplay-policy=user-gesture-required",
-				"--disable-background-networking",
-				"--disable-background-timer-throttling",
-				"--disable-backgrounding-occluded-windows",
-				"--disable-breakpad",
-				"--disable-client-side-phishing-detection",
-				"--disable-component-update",
-				"--disable-default-apps",
-				"--disable-dev-shm-usage",
-				"--disable-domain-reliability",
-				"--disable-extensions",
-				"--disable-features=AudioServiceOutOfProcess",
-				"--disable-hang-monitor",
-				"--disable-ipc-flooding-protection",
-				"--disable-notifications",
-				"--disable-offer-store-unmasked-wallet-cards",
-				"--disable-popup-blocking",
-				"--disable-print-preview",
-				"--disable-prompt-on-repost",
-				"--disable-renderer-backgrounding",
-				"--disable-setuid-sandbox",
-				"--disable-speech-api",
-				"--disable-sync",
-				"--hide-scrollbars",
-				"--ignore-gpu-blacklist",
-				"--metrics-recording-only",
-				"--mute-audio",
-				"--no-default-browser-check",
-				"--no-first-run",
-				"--no-pings",
-				"--no-sandbox",
-				"--no-zygote",
-				"--password-store=basic",
-				"--use-gl=swiftshader",
-				"--use-mock-keychain",
-			],
-			defaultViewport: chromium.defaultViewport,
-			executablePath: isLocal
-				? process.env.PUPPETEER_EXECUTABLE_PATH
-				: await chromium.executablePath(),
-			headless: isLocal ? true : chromium.headless,
-			ignoreHTTPSErrors: true,
-		});
-		let buffer;
-
-		const options = { type: format, encoding: "base64", fullPage: full };
 		const page = await browser.newPage();
 
 		if (isTweet) {
@@ -88,10 +59,11 @@ const getScreenshot = async ({
 			buffer = await page.screenshot(options);
 		}
 		await page.close();
-		await browser.close();
 		return buffer;
 	} catch (error) {
 		throw error;
+	} finally {
+		await browser.close();
 	}
 };
 
