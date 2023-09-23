@@ -1,50 +1,50 @@
 {
-  "name": "screenshot",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "preinstall": "([ ! -f package-lock.json ] && npm install --package-lock-only --ignore-scripts --no-audit); npx npm-force-resolutions",
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "browserslist": [
-    ">= 0.5%",
-    "last 2 major versions",
-    "Chrome >= 60",
-    "Firefox >= 60",
-    "Firefox ESR",
-    "iOS >= 12",
-    "Safari >= 12",
-    "not Explorer <= 11"
-  ],
-  "dependencies": {
-    "chrome-aws-lambda": "^10.1.0",
-    "cors": "^2.8.5",
-    "http-errors": "^2.0.0",
-    "next": "^12.1.0",
-    "next-connect": "^0.12.2",
-    "puppeteer": "^13.5.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "devDependencies": {
-    "actionsack": "^0.0.15",
-    "autoprefixer": "^10.2.4",
-    "bootstrap": "^5.1.3",
-    "classnames": "^2.2.6",
-    "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
-    "eslint-plugin-react": "^7.29.3",
-    "file-saver": "^2.0.5",
-    "postcss": "^8.2.6",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-preset-env": "^7.4.2",
-    "react-icons": "^4.2.0",
-    "sass": "^1.32.8"
-  },
-  "resolutions": {
-    "node-fetch": "^3.1.1"
-  }
+	"name": "webscreenshot.now.sh",
+	"description": "An online tool to captures a beautiful and high-quality screenshot of websites and Twitter tweets.",
+	"version": "1.0.0",
+	"license": "MIT",
+	"author": "Vijay Hardaha <https://twitter.com/vijayhardaha>",
+	"homepage": "https://github.com/vijayhardaha/webscreenshot.now.sh#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/vijayhardaha/webscreenshot.now.sh.git"
+	},
+	"bugs": {
+		"url": "https://github.com/vijayhardaha/webscreenshot.now.sh/issues"
+	},
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"engines": {
+		"node": "14.x"
+	},
+	"dependencies": {
+		"actionsack": "^0.0.15",
+		"bootstrap": "^5.0.2",
+		"chrome-aws-lambda": "^7.0.0",
+		"classnames": "^2.3.2",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"file-saver": "^2.0.5",
+		"http-errors": "^2.0.0",
+		"next": "^11.1.2",
+		"next-connect": "^1.0.0",
+		"puppeteer-core": "^8.0.0",
+		"react": "17.0.1",
+		"react-dom": "17.0.1",
+		"react-icons": "^4.11.0"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.4.16",
+		"eslint-config-next": "13.5.2",
+		"eslint-plugin-react": "^7.33.2",
+		"eslint": "8.50.0",
+		"postcss-flexbugs-fixes": "^5.0.2",
+		"postcss-preset-env": "^9.1.4",
+		"postcss": "^8.4.30",
+		"sass": "^1.68.0"
+	}
 }

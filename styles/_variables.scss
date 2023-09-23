@@ -13,7 +13,6 @@ $gray-900: #212529;
 $black: #000;
 
 $body-color: $gray-800;
-$body-bg: #f3f4f5;
 $danger: #e91e63;
 $primary: #1a73e8;
 $dark: $gray-800;
@@ -23,18 +22,8 @@ $font-family-base: "Poppins", sans-serif;
 $link-decoration: none;
 $link-hover-decoration: underline;
 
-$box-shadow: 0 0.5rem 0.75rem -0.25rem rgba(39, 48, 54, 0.05);
-$border-radius: 0.5rem;
-$card-cap-bg: $white;
-$card-box-shadow: $box-shadow;
-$card-title-spacer-y: 1rem;
-$card-cap-padding-y: 1rem;
-$card-cap-padding-x: 1rem;
-$card-border-color: $gray-200;
-$card-border-radius: $border-radius;
 $input-disabled-bg: $gray-100;
 $input-group-addon-bg: darken($gray-100, 3%);
-$input-border-color: $body-bg;
 $enable-validation-icons: false;
 $form-switch-width: 2.875em;
 $form-check-input-width: $form-switch-width * 0.5;
